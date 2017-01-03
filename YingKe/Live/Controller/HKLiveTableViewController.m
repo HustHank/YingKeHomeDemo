@@ -20,6 +20,8 @@ static CGFloat kTabBarCenterButtondelta = 44.f;
 
 @property (nonatomic, strong) NSMutableArray *data;
 @property (nonatomic, assign) CGFloat lastContentOffsetY;
+@property (nonatomic, assign) CGFloat lastDragContentOffsetY;
+@property (nonatomic, assign) BOOL shouldScroll;
 
 @end
 
@@ -27,10 +29,12 @@ static CGFloat kTabBarCenterButtondelta = 44.f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.tableView.backgroundColor = [UIColor blueColor];
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.extendedLayoutIncludesOpaqueBars = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -50,8 +54,21 @@ static CGFloat kTabBarCenterButtondelta = 44.f;
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     //TODO:Recvoery navgationg to next UIViewcontroller
+    _shouldScroll = NO;
+    [self resetScrollView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    _shouldScroll = YES;
+}
+
+- (void)resetScrollView {
+    [self.tableView setContentOffset:CGPointMake(0, -64)];
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
+    self.navigationController.navigationBar.frame = CGRectMake(0, 20, CGRectGetWidth(self.navigationController.navigationBar.frame), CGRectGetHeight(self.navigationController.navigationBar.frame));
+    self.tabBarController.tabBar.frame = CGRectMake(0, kScreenHeight - CGRectGetHeight(self.tabBarController.tabBar.frame), CGRectGetWidth(self.tabBarController.tabBar.frame), CGRectGetHeight(self.tabBarController.tabBar.frame));
+}
 #pragma mark - Private Method
 - (void)scrollWithDelta:(CGFloat)delta {
     CGRect frameNav = self.navigationController.navigationBar.frame;
@@ -140,16 +157,32 @@ static CGFloat kTabBarCenterButtondelta = 44.f;
 }
 
 - (void)checkForPartialScroll {
-    CGFloat pos = self.navigationController.navigationBar.frame.origin.y;
-    __block CGRect frame = self.navigationController.navigationBar.frame;
+    CGRect tabBarFrame = self.tabBarController.tabBar.frame;
+    CGRect navBarFrame = self.navigationController.navigationBar.frame;
+    CGFloat tabBarHeight = CGRectGetHeight(tabBarFrame);
+    CGFloat maxTabBarY = CGRectGetMaxY(tabBarFrame);
+    CGFloat tableViewContentOffsetY = self.tableView.contentOffset.y;
+    CGFloat contentOffsetDeltaY = tableViewContentOffsetY - self.lastDragContentOffsetY;
+    CGFloat tabBarRealHeight = tabBarHeight + kTabBarCenterButtondelta;
     
-    if (ABS(pos) < frame.size.height) {
-        // Get back down
-        if (ABS(pos) >= frame.size.height / 2) {
-            [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+    if (contentOffsetDeltaY > 0) {
+        if (contentOffsetDeltaY < tabBarRealHeight) { //get back up
+            [UIView animateWithDuration:0.2 animations:^{
+                [self scrollWithDelta:tabBarRealHeight - contentOffsetDeltaY];
+            }];
+
         } else {
-            [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
+//TODO:show Nav and TabBar
         }
+    } else if (contentOffsetDeltaY < 0) { //get back down
+        if (navBarFrame.origin.y < 0 && ABS(contentOffsetDeltaY) < tabBarRealHeight) {
+            [UIView animateWithDuration:0.2 animations:^{
+                [self scrollWithDelta:ABS(contentOffsetDeltaY) - tabBarRealHeight];
+            }];
+        } else {
+            //TODO:hide Nav and TabBar
+        }
+
     }
 }
 
@@ -193,13 +226,15 @@ static CGFloat kTabBarCenterButtondelta = 44.f;
 
 #pragma mark - ScrollView Delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat contentOffsetY = scrollView.contentOffset.y;
-    CGFloat delta = contentOffsetY - self.lastContentOffsetY;
-    NSLog(@"lastContentOffsetY:%f-----contentOffsetY:%f",self.lastContentOffsetY,contentOffsetY);
-    self.lastContentOffsetY = contentOffsetY;
-    NSLog(@"delta:%f",delta);
-    if ([self checkRubberbanding:delta]) {
-        [self scrollWithDelta:delta];
+    if (_shouldScroll) {
+        CGFloat contentOffsetY = scrollView.contentOffset.y;
+        CGFloat delta = contentOffsetY - self.lastContentOffsetY;
+        NSLog(@"lastContentOffsetY:%f-----contentOffsetY:%f",self.lastContentOffsetY,contentOffsetY);
+        self.lastContentOffsetY = contentOffsetY;
+        NSLog(@"delta:%f",delta);
+        if ([self checkRubberbanding:delta]) {
+            [self scrollWithDelta:delta];
+        }
     }
 }
 
@@ -210,13 +245,12 @@ static CGFloat kTabBarCenterButtondelta = 44.f;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    self.lastContentOffsetY = 0;
+    self.lastDragContentOffsetY = scrollView.contentOffset.y;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate; {
-    CGFloat contentOffsetY = scrollView.contentOffset.y;
     NSLog(@"scrollViewDidEndDragging");
-//    [self checkForPartialScroll];
+    [self checkForPartialScroll];
     //TODO: Get back down or up
 }
 
