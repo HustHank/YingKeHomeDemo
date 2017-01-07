@@ -5,4 +5,6 @@ A demo show YingKe app‘s home animations
 
 
 ###项目演示
-![image](https://github.com/HustHank/YingKeHomeDemo/showAndHideDemo.gif)   
+![效果图1](https://github.com/HustHank/YingKeHomeDemo/blob/master/showNavAndTab.png) 
+![效果图2](https://github.com/HustHank/YingKeHomeDemo/blob/master/hideNavAndTab.png) 
+![效果动态图](https://github.com/HustHank/YingKeHomeDemo/blob/master/showAndHideDemo.gif) 
