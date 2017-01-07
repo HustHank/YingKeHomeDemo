@@ -1,9 +1,9 @@
 //
-//  UIView+LBExtension.h
-//  XianYu
+//  UIView+HKExtension.h
+//  YingKe
 //
-//  Created by li  bo on 16/5/28.
-//  Copyright © 2016年 li  bo. All rights reserved.
+//  Created by HK on 17/1/7.
+//  Copyright © 2017年 hkhust. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

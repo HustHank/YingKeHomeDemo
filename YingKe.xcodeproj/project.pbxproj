@@ -19,7 +19,7 @@
 		57DF8CCA1E1A8BDE000CFC45 /* HKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF8CB91E1A8BDE000CFC45 /* HKNavigationController.m */; };
 		57DF8CCB1E1A8BDE000CFC45 /* HKTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF8CBB1E1A8BDE000CFC45 /* HKTabBarController.m */; };
 		57DF8CCC1E1A8BDE000CFC45 /* HKTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF8CBE1E1A8BDE000CFC45 /* HKTabBar.m */; };
-		57DF8CCD1E1A8BDE000CFC45 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF8CC01E1A8BDE000CFC45 /* ViewController.m */; };
+		57DF8CD41E20CD10000CFC45 /* UIView+HKOpenOrClose.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF8CD31E20CD10000CFC45 /* UIView+HKOpenOrClose.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,8 +44,8 @@
 		57DF8CBB1E1A8BDE000CFC45 /* HKTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKTabBarController.m; sourceTree = "<group>"; };
 		57DF8CBD1E1A8BDE000CFC45 /* HKTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKTabBar.h; sourceTree = "<group>"; };
 		57DF8CBE1E1A8BDE000CFC45 /* HKTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKTabBar.m; sourceTree = "<group>"; };
-		57DF8CBF1E1A8BDE000CFC45 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		57DF8CC01E1A8BDE000CFC45 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		57DF8CD21E20CD10000CFC45 /* UIView+HKOpenOrClose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HKOpenOrClose.h"; sourceTree = "<group>"; };
+		57DF8CD31E20CD10000CFC45 /* UIView+HKOpenOrClose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HKOpenOrClose.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +88,6 @@
 				57DF8CAE1E1A8BDE000CFC45 /* main.m */,
 				57DF8CAF1E1A8BDE000CFC45 /* Mine */,
 				57DF8CB31E1A8BDE000CFC45 /* TabBar */,
-				57DF8CBF1E1A8BDE000CFC45 /* ViewController.h */,
-				57DF8CC01E1A8BDE000CFC45 /* ViewController.m */,
 			);
 			path = YingKe;
 			sourceTree = "<group>";
@@ -114,6 +112,7 @@
 		57DF8CAA1E1A8BDE000CFC45 /* Live */ = {
 			isa = PBXGroup;
 			children = (
+				57DF8CCE1E1E9E3A000CFC45 /* View */,
 				57DF8CAB1E1A8BDE000CFC45 /* Controller */,
 			);
 			path = Live;
@@ -180,6 +179,15 @@
 			children = (
 				57DF8CBD1E1A8BDE000CFC45 /* HKTabBar.h */,
 				57DF8CBE1E1A8BDE000CFC45 /* HKTabBar.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		57DF8CCE1E1E9E3A000CFC45 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				57DF8CD21E20CD10000CFC45 /* UIView+HKOpenOrClose.h */,
+				57DF8CD31E20CD10000CFC45 /* UIView+HKOpenOrClose.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -258,9 +266,9 @@
 			files = (
 				57DF8CCC1E1A8BDE000CFC45 /* HKTabBar.m in Sources */,
 				57DF8CC41E1A8BDE000CFC45 /* HKCreateRoomViewController.m in Sources */,
+				57DF8CD41E20CD10000CFC45 /* UIView+HKOpenOrClose.m in Sources */,
 				57DF8CC61E1A8BDE000CFC45 /* HKLiveTableViewController.m in Sources */,
 				57DF8CCB1E1A8BDE000CFC45 /* HKTabBarController.m in Sources */,
-				57DF8CCD1E1A8BDE000CFC45 /* ViewController.m in Sources */,
 				57DF8CC71E1A8BDE000CFC45 /* main.m in Sources */,
 				57DF8CC91E1A8BDE000CFC45 /* UIView+HKExtension.m in Sources */,
 				57DF8CC11E1A8BDE000CFC45 /* AppDelegate.m in Sources */,
@@ -414,6 +422,7 @@
 				57DF8C591E17AA16000CFC45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

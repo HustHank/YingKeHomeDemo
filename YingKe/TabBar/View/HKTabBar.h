@@ -8,17 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class HKTabBar;
-
-@protocol HKTabBarDelegate <NSObject>
-@optional
-- (void)tabBarPlusBtnClick:(HKTabBar *)tabBar;
-@end
-
+typedef void(^HKTabBarClickBlock)();
 
 @interface HKTabBar : UITabBar
 
-/** tabbar的代理 */
-@property (nonatomic, weak) id<HKTabBarDelegate> myDelegate;
+- (void)setBtnClickBlock:(HKTabBarClickBlock)block;
 
 @end
