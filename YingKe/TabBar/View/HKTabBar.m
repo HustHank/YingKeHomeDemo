@@ -57,10 +57,10 @@ static CGFloat kMargin = 5.f;
         if ([btn isKindOfClass:class]) {//如果是系统的UITabBarButton，那么就调整子控件位置，空出中间位置
             //按钮宽度为TabBar宽度减去中间按钮宽度的一半
             btn.width = (self.width - self.centerBtn.width) * 0.5;
-            
+            //中间按钮前的宽度
             if (btnIndex < 1) {
                 btn.x = btn.width * btnIndex;
-            } else {
+            } else { //中间按钮后的宽度
                 btn.x = btn.width * btnIndex + self.centerBtn.width;
             }
             

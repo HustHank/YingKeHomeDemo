@@ -13,7 +13,7 @@
 static NSString * const kCellIdentifier = @"HKLiveTableViewCellIdentifier";
 static CGFloat kStatusBarHeight = 20.f;
 static CGFloat kNavBarHeight = 44.f;
-//中间按钮超出TabBar的距离
+//中间按钮超出TabBar的距离，根据实际情况来定
 static CGFloat kTabBarCenterButtonDelta = 44.f;
 
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -35,11 +35,6 @@ static CGFloat kTabBarCenterButtonDelta = 44.f;
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self open];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
     [self open];
 }
 
@@ -94,10 +89,11 @@ static CGFloat kTabBarCenterButtonDelta = 44.f;
 }
 
 - (void)closeOrOpenBar {
-    
+    //NavBar和TabBar是展开还是收起
     BOOL opening = [self.navigationController.navigationBar hk_shouldOpen];
     
     [UIView animateWithDuration:0.2 animations:^{
+        
         CGFloat navBarOffsetY = 0;
         if (opening) {
             navBarOffsetY = [self.navigationController.navigationBar hk_open];
@@ -106,9 +102,9 @@ static CGFloat kTabBarCenterButtonDelta = 44.f;
             navBarOffsetY = [self.navigationController.navigationBar hk_close];
             [self.tabBarController.tabBar hk_close];
         }
-
+        //更新TableView的contentInset
         [self updateScrollViewInset];
-        
+        //根据NavBar的偏移量来滑动TableView
         CGPoint contentOffset = self.tableView.contentOffset;
         contentOffset.y += navBarOffsetY;
         self.tableView.contentOffset = contentOffset;
@@ -161,6 +157,7 @@ static CGFloat kTabBarCenterButtonDelta = 44.f;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate; {
+    //在拖动停止时，根据当前偏移量，决定当前NavBar和TabBar是收起还是展开
     [self closeOrOpenBar];
 }
 

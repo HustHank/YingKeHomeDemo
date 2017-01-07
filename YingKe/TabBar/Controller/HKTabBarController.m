@@ -34,7 +34,7 @@
         [self.selectedViewController pushViewController:plusVC animated:YES];
         
     }];
-    //kvc实质是修改了系统的_tabBar
+    //KVC实质是修改了系统的_tabBar
     [self setValue:tabbar forKeyPath:@"tabBar"];
 }
 
