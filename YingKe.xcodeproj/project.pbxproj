@@ -20,8 +20,6 @@
 		57DF8CCB1E1A8BDE000CFC45 /* HKTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF8CBB1E1A8BDE000CFC45 /* HKTabBarController.m */; };
 		57DF8CCC1E1A8BDE000CFC45 /* HKTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF8CBE1E1A8BDE000CFC45 /* HKTabBar.m */; };
 		57DF8CD41E20CD10000CFC45 /* UIView+HKOpenOrClose.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF8CD31E20CD10000CFC45 /* UIView+HKOpenOrClose.m */; };
-		57DF8CE41E2128F5000CFC45 /* hideNavAndTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF8CE21E2128F5000CFC45 /* hideNavAndTab.png */; };
-		57DF8CE51E2128F5000CFC45 /* showNavAndTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF8CE31E2128F5000CFC45 /* showNavAndTab.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,8 +46,6 @@
 		57DF8CBE1E1A8BDE000CFC45 /* HKTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKTabBar.m; sourceTree = "<group>"; };
 		57DF8CD21E20CD10000CFC45 /* UIView+HKOpenOrClose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HKOpenOrClose.h"; sourceTree = "<group>"; };
 		57DF8CD31E20CD10000CFC45 /* UIView+HKOpenOrClose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HKOpenOrClose.m"; sourceTree = "<group>"; };
-		57DF8CE21E2128F5000CFC45 /* hideNavAndTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hideNavAndTab.png; sourceTree = "<group>"; };
-		57DF8CE31E2128F5000CFC45 /* showNavAndTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showNavAndTab.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +88,6 @@
 				57DF8CA31E1A8BDE000CFC45 /* LaunchScreen.storyboard */,
 				57DF8CA91E1A8BDE000CFC45 /* Info.plist */,
 				57DF8CAE1E1A8BDE000CFC45 /* main.m */,
-				57DF8CE21E2128F5000CFC45 /* hideNavAndTab.png */,
-				57DF8CE31E2128F5000CFC45 /* showNavAndTab.png */,
 			);
 			path = YingKe;
 			sourceTree = "<group>";
@@ -258,10 +252,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				57DF8CC21E1A8BDE000CFC45 /* Assets.xcassets in Resources */,
-				57DF8CE41E2128F5000CFC45 /* hideNavAndTab.png in Resources */,
 				57DF8CC31E1A8BDE000CFC45 /* LaunchScreen.storyboard in Resources */,
 				57DF8CC51E1A8BDE000CFC45 /* Info.plist in Resources */,
-				57DF8CE51E2128F5000CFC45 /* showNavAndTab.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
