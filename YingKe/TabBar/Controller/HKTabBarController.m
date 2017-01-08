@@ -25,7 +25,7 @@
     
     [self setUpAllChildVc];
     
-    //创建自己的tabbar，然后用kvc将自己的tabbar和系统的tabBar替换下
+    //创建自己的tabbar，然后用KVC将自己的tabbar和系统的tabBar替换下
     HKTabBar *tabbar = [[HKTabBar alloc] init];
     [tabbar setBtnClickBlock:^{
         
@@ -64,8 +64,9 @@
     Vc.tabBarItem.title = title;
     Vc.navigationItem.title = title;
     
-    //设置图片居中
+    //设置图片居中，这里的4.5，根据实际中间按钮图片大小来决定
     Vc.tabBarItem.imageInsets = UIEdgeInsetsMake(4.5, 0, -4.5, 0);
+    //设置不显示文字，将title的位置设置成无限远，就看不到了
     Vc.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, MAXFLOAT);
     
     [self addChildViewController:nav];
