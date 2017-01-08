@@ -9,6 +9,8 @@ Xcode: 8.1
 
 iOS: 10.1
 
+# 项目讲解地址
+[简书：iOS-实现映客首页TabBar和滑动隐藏NavBar和TabBar](http://www.jianshu.com/p/72228667cd7a)
 
 # 项目演示
 ![效果动态图](https://github.com/HustHank/YingKeHomeDemo/blob/master/showAndHideDemo.gif) 
