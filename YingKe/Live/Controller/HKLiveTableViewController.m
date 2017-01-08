@@ -96,9 +96,11 @@ static CGFloat kTabBarCenterButtonDelta = 44.f;
         
         CGFloat navBarOffsetY = 0;
         if (opening) {
+            //navBarOffsetY为NavBar从当前位置到展开滑动的距离
             navBarOffsetY = [self.navigationController.navigationBar hk_open];
             [self.tabBarController.tabBar hk_open];
         } else {
+            //navBarOffsetY为NavBar从当前位置到收起滑动的距离
             navBarOffsetY = [self.navigationController.navigationBar hk_close];
             [self.tabBarController.tabBar hk_close];
         }
@@ -148,15 +150,11 @@ static CGFloat kTabBarCenterButtonDelta = 44.f;
     self.previousOffsetY = contentOffsetY;
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    _previousOffsetY = scrollView.contentOffset.y;
-}
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     _previousOffsetY = scrollView.contentOffset.y;
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate; {
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     //在拖动停止时，根据当前偏移量，决定当前NavBar和TabBar是收起还是展开
     [self closeOrOpenBar];
 }
