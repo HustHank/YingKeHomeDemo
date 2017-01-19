@@ -82,18 +82,19 @@ static CGFloat kStatusBarHeight = 20.f;
 - (BOOL)hk_shouldOpen {
     CGFloat viewY = CGRectGetMinY(self.frame);
     CGFloat viewMinY = [self hk_openOffsetY];
+    BOOL shouldOpen = YES;
+    
     if (HKMovingViewPostionTop == self.hk_postion) {
         viewMinY = [self hk_closeOffsetY] + ([self hk_openOffsetY] - [self hk_closeOffsetY]) * 0.5;
+        shouldOpen = viewY >= viewMinY;
     } else if (HKMovingViewPostionBottom == self.hk_postion) {
         viewMinY = [self hk_openOffsetY] + ([self hk_closeOffsetY] - [self hk_openOffsetY]) * 0.5;
+        shouldOpen = viewY <= viewMinY;
     } else {
         
     }
     
-    if (viewY <= viewMinY) {
-        return NO;
-    }
-    return YES;
+    return shouldOpen;
 }
 
 #pragma mark - Private Method 
@@ -132,7 +133,7 @@ static CGFloat kStatusBarHeight = 20.f;
     if (HKMovingViewPostionTop == self.hk_postion) {
         closeOffsetY = -(CGRectGetHeight(self.frame) + self.hk_extraDistance);
     } else if (HKMovingViewPostionBottom == self.hk_postion) {
-        closeOffsetY = kScreenHeight + CGRectGetHeight(self.frame) + self.hk_extraDistance;
+        closeOffsetY = kScreenHeight + self.hk_extraDistance;
     }
     
     return closeOffsetY;
