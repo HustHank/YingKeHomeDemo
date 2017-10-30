@@ -82,8 +82,8 @@ static CGFloat kTabBarCenterButtonDelta = 44.f;
     CGFloat navBarMaxY = CGRectGetMaxY(self.navigationController.navigationBar.frame);
     CGFloat tabBarMinY = CGRectGetMinY(self.tabBarController.tabBar.frame);
     UIEdgeInsets scrollViewInset = self.tableView.contentInset;
-    scrollViewInset.top = navBarMaxY;
-    scrollViewInset.bottom = MAX(0, kScreenHeight - tabBarMinY);
+    scrollViewInset.top = [self adjustTopInset:navBarMaxY];
+    scrollViewInset.bottom = [self adjustBottomInset:MAX(0, kScreenHeight - tabBarMinY)];
     self.tableView.contentInset = scrollViewInset;
     self.tableView.scrollIndicatorInsets = scrollViewInset;
 }
@@ -111,6 +111,20 @@ static CGFloat kTabBarCenterButtonDelta = 44.f;
         contentOffset.y += navBarOffsetY;
         self.tableView.contentOffset = contentOffset;
     }];
+}
+
+- (CGFloat)adjustTopInset:(CGFloat)topInset {
+    if (@available(iOS 11.0, *)) {
+        return topInset - (self.tableView.adjustedContentInset.top - self.tableView.contentInset.top);
+    }
+    return topInset;
+}
+
+- (CGFloat)adjustBottomInset:(CGFloat)bottomInset {
+    if (@available(iOS 11.0, *)) {
+        return bottomInset - (self.tableView.adjustedContentInset.bottom - self.tableView.contentInset.bottom);
+    }
+    return bottomInset;
 }
 
 #pragma mark - ScrollView Delegate
