@@ -9,7 +9,6 @@
 #import "UIView+HKOpenOrClose.h"
 #import <objc/runtime.h>
 
-static CGFloat kStatusBarHeight = 20.f;
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 
 @implementation UIView (HKOpenOrClose)
@@ -119,7 +118,7 @@ static CGFloat kStatusBarHeight = 20.f;
 - (CGFloat)hk_openOffsetY {
     CGFloat openOffsetY = 0;
     if (HKMovingViewPostionTop == self.hk_postion) {
-        openOffsetY = kStatusBarHeight;
+        openOffsetY = [UIApplication sharedApplication].statusBarFrame.size.height;
     } else if (HKMovingViewPostionBottom == self.hk_postion) {
         openOffsetY = kScreenHeight - CGRectGetHeight(self.frame);
     }
