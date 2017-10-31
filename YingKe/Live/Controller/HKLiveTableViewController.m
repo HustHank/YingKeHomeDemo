@@ -11,7 +11,6 @@
 #import "UIView+HKOpenOrClose.h"
 
 static NSString * const kCellIdentifier = @"HKLiveTableViewCellIdentifier";
-static CGFloat kStatusBarHeight = 20.f;
 static CGFloat kNavBarHeight = 44.f;
 //中间按钮超出TabBar的距离，根据实际情况来定
 static CGFloat kTabBarCenterButtonDelta = 44.f;
@@ -140,7 +139,7 @@ static CGFloat kTabBarCenterButtonDelta = 44.f;
     
     // 2 - 忽略超出滑动范围的Offset
     // 1) - 忽略向上滑动的Offset
-    CGFloat topInset = kStatusBarHeight + kNavBarHeight;
+    CGFloat topInset = [UIApplication sharedApplication].statusBarFrame.size.height + kNavBarHeight;
     CGFloat start = -topInset;
     if (_previousOffsetY <= start) {
         deltaY = MAX(0, deltaY + (_previousOffsetY - start));
